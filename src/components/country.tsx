@@ -8,7 +8,7 @@ export const Country = ({ country }: { country: iCountry }) => {
 				<h2 className='text-sm font-extrabold pb-2'>{country.name.common}</h2>
 				<h3 className='text-xs'>
 					<span className='font-semibold'>Population: </span>
-                    {country.population}
+                    {country.population.toLocaleString()}
 				</h3>
 				<h3 className='text-xs'>
 					<span className='font-semibold'>Region: </span>
