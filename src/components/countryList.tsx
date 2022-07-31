@@ -73,7 +73,7 @@ export const CountryList = () => {
 				<div className='grid gap-8 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16 xl:px-14'>
 					{countries &&
 						filterResults().map(country => (
-							<Link key={country.cca3} to={`/country/${country.cca3}`}>
+							<Link key={country.cca3} to={`/country/${country.cca3}`} state={country}>
 								<Country country={country} />
 							</Link>
 						))}

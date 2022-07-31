@@ -24,6 +24,7 @@ export interface iCountry {
 	translations: iTranslation;
 	latlng: number[];
 	landlocked: boolean;
+    borders?: string[];
 	area: number;
 	demonyms: iDemonyms;
 	flag: string;
