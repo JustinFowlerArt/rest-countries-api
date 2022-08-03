@@ -2,7 +2,9 @@ export interface iCountry {
 	name: {
 		common: string;
 		official: string;
-		nativeName: iTranslation;
+		nativeName: {
+			[key: string]: iTranslation;
+		};
 	};
 	tld: string[];
 	cca2: string;
@@ -11,7 +13,9 @@ export interface iCountry {
 	independent: boolean;
 	status: string;
 	unMember: boolean;
-	currencies: iCurrency;
+	currencies: {
+		[key: string]: iCurrency;
+	};
 	idd: {
 		root: string;
 		suffixes: string[];
@@ -20,13 +24,17 @@ export interface iCountry {
 	altSpellings: string[];
 	region: string;
 	subregion: string;
-	languages: iLanguage;
+	languages: {
+		[key: string]: string;
+	};
 	translations: iTranslation;
 	latlng: number[];
 	landlocked: boolean;
-    borders?: string[];
+	borders?: string[];
 	area: number;
-	demonyms: iDemonyms;
+	demonyms: {
+		[key: string]: iDemonyms;
+	};
 	flag: string;
 	maps: {
 		googleMaps: string;
@@ -62,21 +70,17 @@ export interface iError {
 	message: string;
 }
 
-interface iTranslation {
+export interface iTranslation {
 	official: string;
 	common: string;
 }
 
-interface iCurrency {
+export interface iCurrency {
 	name: string;
 	symbol: string;
 }
 
-interface iDemonyms {
+export interface iDemonyms {
 	f: string;
 	m: string;
-}
-
-interface iLanguage {
-	name: string;
 }

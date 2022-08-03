@@ -15,8 +15,8 @@ app.use(wdm(compiler, {
     publicPath: config.output.publicPath
 }));
 
-app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../src/index.html"));
+app.get("*", function(req, res) {
+    res.sendFile(path.resolve(__dirname, "../src/index.html"));
 });
 
 app.listen(port, function(err) {

@@ -1,43 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CountryLookup } from './countryLookup';
 import { RegionFilter } from './regionFilter';
-import { iCountry, iError } from './interfaces';
-import { useFetch } from '../hooks/useFetch';
-import { Country } from './country';
 
-export const CountryList = () => {
+import { Country } from './country';
+import { iCountry, iError } from './interfaces';
+
+interface Props {
+	countries: iCountry[];
+	loading: boolean;
+	error: iError | null;
+}
+
+export const CountryList = ({ countries, loading, error }: Props) => {
 	const [lookup, setLookup] = useState({
 		search: '',
 		region: '',
 	});
-	const [countries, setCountries] = useState<iCountry[]>([]);
 
 	const handleChange = (name: string, value: string) => {
 		setLookup({ ...lookup, [name]: value });
 	};
-
-	// const endpoint = 'https://restcountries.com/v3.1/all'
-
-	const endpoint = 'https://restcountries.com/v3.1/alpha/DEU';
-
-	const { data, error, loading, getData } = useFetch<iCountry[], iError>(
-		endpoint,
-		{
-			immediate: false,
-		}
-	);
-
-	useEffect(() => {
-		getData();
-	}, [getData]);
-
-	useEffect(() => {
-		if (data && !loading) {
-			if (data === countries) return;
-			setCountries(data);
-		}
-	}, [data, countries, loading]);
 
 	const filterResults = () => {
 		let results = countries;
@@ -64,8 +47,9 @@ export const CountryList = () => {
 				<CountryLookup search={lookup.search} handleChange={handleChange} />
 				<RegionFilter region={lookup.region} handleChange={handleChange} />
 			</div>
-			{loading && <h2 className='text-lg font-extrabold'>Loading...</h2>}
-			{error ? (
+			{loading ? (
+				<h2 className='text-lg font-extrabold'>Loading...</h2>
+			) : error ? (
 				<h2 className='text-red-500 text-lg font-extrabold'>
 					Error loading countries
 				</h2>
@@ -73,7 +57,7 @@ export const CountryList = () => {
 				<div className='grid gap-8 px-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-16 xl:px-14'>
 					{countries &&
 						filterResults().map(country => (
-							<Link key={country.cca3} to={`/country/${country.cca3}`} state={country}>
+							<Link key={country.cca3} to={`/country/${country.cca3}`}>
 								<Country country={country} />
 							</Link>
 						))}
