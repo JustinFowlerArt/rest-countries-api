@@ -24,19 +24,6 @@ export const CountryDetail = ({ countries, loading, error }: Props) => {
 		}
 	}, [countries, slug, country]);
 
-	const mapObject = <T,>(object: T, prop: string, subObject = false) => {
-		const property = object[prop as keyof T];
-		const end = Object.keys(property).length - 1;
-		return Object.keys(property).map((k, index) => {
-			const keyedProperty = property[k as keyof typeof property];
-			let value = '';
-			subObject
-				? (value = `${keyedProperty[Object.keys(keyedProperty)[0]]}`)
-				: (value = `${keyedProperty}`);
-			return (value += index !== end ? ', ' : '');
-		});
-	};
-
 	return (
 		<div className='lg:px-6 xl:px-14'>
 			{loading ? (
@@ -101,7 +88,7 @@ export const CountryDetail = ({ countries, loading, error }: Props) => {
 								<div className='space-y-2'>
 									<h3>
 										<span className='font-semibold'>Top Level Domain: </span>
-										{country.tld.map((domain, index) => (
+										{country.tld?.map((domain, index) => (
 											<span key={index}>
 												{domain}
 												{index !== country.tld.length - 1 && ', '}
@@ -110,16 +97,21 @@ export const CountryDetail = ({ countries, loading, error }: Props) => {
 									</h3>
 									<h3>
 										<span className='font-semibold'>Currency: </span>
-										{mapObject<iCountry>(country, 'currencies', true).map(
-											currency => (
-												<span key={currency}>{currency}</span>
+										{Object.entries(country.currencies).map(
+											([key, value], index, array) => (
+												<span key={key}>
+													{`${value.name}${index === array.length -1 ? '' : ', '}`}
+												</span>
 											)
 										)}
 									</h3>
 									<h3>
 										<span className='font-semibold'>Languages: </span>
-										{mapObject<iCountry>(country, 'languages').map(language => (
-											<span key={language}>{language}</span>
+										{Object.entries(country.languages).map(
+											([key, value], index, array) => (
+												<span key={key}>
+													{`${value}${index === array.length -1 ? '' : ', '} `}
+												</span>
 										))}
 									</h3>
 								</div>
