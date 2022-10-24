@@ -7,6 +7,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
+  - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -32,6 +33,10 @@ Users should be able to:
 ![](./design/final-mobile-detail.png)
 ![](./design/final-desktop-home.png)
 ![](./design/final-desktop-detail.png)
+
+### Links
+- [Solution URL](https://www.frontendmentor.io/solutions/rest-countries-with-react-router-typescript-tailwind-and-fetch-mJrFp3bQ5V)
+- [Live Site URL](https://rest-countries-api.justinfowlerart.com/)
 
 ## My process
 
