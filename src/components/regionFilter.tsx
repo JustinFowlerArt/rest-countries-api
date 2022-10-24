@@ -7,6 +7,7 @@ export const RegionFilter = ({ region, handleChange }: Props) => {
 		<select
 			value={region}
             name='region'
+			aria-label='Filter by Region'
 			onChange={e => handleChange(e.target.name, e.target.value)}
 			className='w-3/5 dark:bg-dark-blue dark:placeholder:text-white px-6 py-4 text-sm shadow rounded-md sm:w-1/3 md:w-1/4 xl:w-1/6'
 		>
