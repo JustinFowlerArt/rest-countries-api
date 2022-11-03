@@ -85,7 +85,7 @@ export const CountryDetail = ({ countries, loading, error }: Props) => {
 									</h3>
 								</div>
 
-								<div className='space-y-2'>
+								<div className='space-y-2 mt-2 lg:mt-0'>
 									<h3>
 										<span className='font-semibold'>Top Level Domain: </span>
 										{country.tld?.map((domain, index) => (
